@@ -1,0 +1,6 @@
+﻿Banan:10:100:kg
+Mjölk:20:200:styckpris
+General XR:45:300:styckpris
+Pågenlimpa:30:400:styckpris
+Cola nappar:15:500:styckpris
+Billys pizza:15:600:styckpris
