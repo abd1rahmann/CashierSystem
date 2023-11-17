@@ -43,9 +43,6 @@ namespace KASSASYSTEM2
             }
         }
 
-
-
-
         public void LoadProducts()
         {
             string[] lines = File.ReadAllLines(filePath);
@@ -74,8 +71,6 @@ namespace KASSASYSTEM2
             }
         }
 
-        //private CustomCart _customCart;
-        //public void SetCustomCart(CustomCart cart) { _customCart = cart; }
         public void NewCustom()
         {
 
@@ -83,7 +78,7 @@ namespace KASSASYSTEM2
             int produktID = 0;
             int antal = 0;
             int run = 1;
-            CustomCart cc = new CustomCart();
+            CustomCart cart = new CustomCart();
             while (run == 1)
             {
 
@@ -94,8 +89,7 @@ namespace KASSASYSTEM2
 
                 if (kommando.ToLower() == "pay")
                 {
-                    //WriteReceipt();
-                    var cartts = cc.GetCartts();
+                    var cartts = cart.GetCartts();
                      
                     WriteReceipt(cartts);
                     run = 0;    
@@ -119,7 +113,7 @@ namespace KASSASYSTEM2
                                 Quantity = antal
                             };
 
-                            cc.AddProduct(cartt);
+                            cart.AddProduct(cartt);
 
                         }
 
