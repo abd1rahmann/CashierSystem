@@ -19,10 +19,8 @@ namespace KASSASYSTEM2
             
             while (run == 1)
             {
-                Console.WriteLine("Välkommen till menyn!\n--------------------------------\nVälj ett av alternativen\n1. NyKund \n0. Avsluta\n");
+                Console.WriteLine("\nVälkommen till menyn!\n--------------------------------\nVälj ett av alternativen\n1. Ny kund \n0. Avsluta\n3. Visa produkter\n");
                 string choice = Console.ReadLine();
-
-
 
                 switch (choice)
                 {
@@ -34,10 +32,10 @@ namespace KASSASYSTEM2
                         NewCustom();
                         break;
                     case "3":
-                        LoadProducts();
+                        ShowProducts();
                         break;
                     default:
-                        Console.WriteLine("\nFel informat! Vänligen välj ett av alternativen\n.");
+                        Console.WriteLine("\nFel inmatning! Vänligen välj ett av alternativen.\n");
                         break;
                 }
             }
@@ -101,12 +99,11 @@ namespace KASSASYSTEM2
                     string[] delar = kommando.Split(' ');
                     if (delar.Length == 2 && int.TryParse(delar[0], out produktID) && int.TryParse(delar[1], out antal))
                     {
-
-                        //I listan products som innehåller alla produkter från textfilen vill vi fiska upp det första produkten med produktid som stämmer in med kommandot
                         var product = products.FirstOrDefault(x => x.ProductID == produktID);
 
-                        if (product != null) // Om produkten finns
+                        if (product != null)
                         {
+                            Console.WriteLine("Fortsätt scanna fler produkter, alternativt mata in `pay` på kommandofältet.");
                             var cartt = new Cartt
                             {
                                 Name = product.Name,
@@ -172,10 +169,19 @@ namespace KASSASYSTEM2
                     total += sum;
                 }
             }
+            
             kvitto+= $"Total: {total}";
             File.WriteAllText(path, kvitto);
             Console.WriteLine(kvitto);
             
+        }
+
+        public void ShowProducts()
+        {
+            foreach (var product in products)
+            {
+                Console.WriteLine("Produkt: " + product.Name + " | ProduktID: " + product.ProductID + " | Pris: " + product.Price + " | " + product.PriceType, "\n");
+            }
         }
          
         
