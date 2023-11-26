@@ -13,29 +13,24 @@ namespace KASSASYSTEM2
         public int Quantity { get; set; }
     }
 
-   // Skapa en enkel klass för produkter
+   
    public class CustomCart
     {
         public readonly List<Cartt> cartts = new List<Cartt>(); 
-        // Skapa en enkel korgklass för att lagra produkter
+        
         public  CustomCart() 
         {
             
 
         }
 
-        // Metod för att hämta och lägga till produkter i korgen
+        
         public void AddProduct(Cartt cartt)
         { 
             cartts.Add(cartt);
             
         }
-        //public void RemoveProduct(Product product) 
-        //{
-        //    cartts.Remove(Cartt);
-        //}
-
-        // Metod för att visa innehållet i korgen
+       
 
         public List<Cartt> GetCartts()
         {

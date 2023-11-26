@@ -19,10 +19,8 @@ namespace KASSASYSTEM2
             
             while (run == 1)
             {
-                Console.WriteLine("Välkommen till menyn!\n--------------------------------\nVälj ett av alternativen\n1. NyKund \n0. Avsluta\n");
+                Console.WriteLine("\nVälkommen till menyn!\n--------------------------------\nVälj ett av alternativen\n1. Ny kund \n0. Avsluta\n3. Visa produkter\n");
                 string choice = Console.ReadLine();
-
-
 
                 switch (choice)
                 {
@@ -34,10 +32,10 @@ namespace KASSASYSTEM2
                         NewCustom();
                         break;
                     case "3":
-                        LoadProducts();
+                        ShowProducts();
                         break;
                     default:
-                        Console.WriteLine("\nFel informat! Vänligen välj ett av alternativen\n.");
+                        Console.WriteLine("\nFel inmatning! Vänligen välj ett av alternativen.\n");
                         break;
                 }
             }
@@ -101,12 +99,11 @@ namespace KASSASYSTEM2
                     string[] delar = kommando.Split(' ');
                     if (delar.Length == 2 && int.TryParse(delar[0], out produktID) && int.TryParse(delar[1], out antal))
                     {
-
-                        //I listan products som innehåller alla produkter från textfilen vill vi fiska upp det första produkten med produktid som stämmer in med kommandot
                         var product = products.FirstOrDefault(x => x.ProductID == produktID);
 
-                        if (product != null) // Om produkten finns
+                        if (product != null)
                         {
+                            Console.WriteLine("Fortsätt scanna fler produkter, alternativt mata in `pay` på kommandofältet.");
                             var cartt = new Cartt
                             {
                                 Name = product.Name,
@@ -126,7 +123,7 @@ namespace KASSASYSTEM2
 
                     else
                     {
-                        Console.WriteLine("Fel informat! Följ instruktionerna som ges.");
+                        Console.WriteLine("Fel inmatning! Följ instruktionerna som ges.");
                     }
 
                 }
@@ -150,16 +147,14 @@ namespace KASSASYSTEM2
             string dateString = date.ToString("yyyy-MM-dd-");
             string timeString = date.ToString("HHmmss");
 
-            // Concatenate the date and time strings
             string resultString = dateString + timeString;
 
-            // Remove ":" from the time part
             resultString = resultString.Replace(":", "");
 
             var fileName = "kvitto" + resultString + ".txt";
             string path = @"C:\Users\Admin\source\repos\KASSASYSTEM2\KASSASYSTEM2\" + fileName;
 
-            string kvitto = "KVITTO " + date.ToString("yyyy-MM-dd hh:mm:ss") + "\n";
+            string kvitto = "\nKVITTO " + date.ToString("yyyy-MM-dd hh:mm:ss") + "\n";
             decimal total = 0;
             foreach (var cartt in cartts) 
             {
@@ -172,10 +167,19 @@ namespace KASSASYSTEM2
                     total += sum;
                 }
             }
+            
             kvitto+= $"Total: {total}";
             File.WriteAllText(path, kvitto);
             Console.WriteLine(kvitto);
             
+        }
+
+        public void ShowProducts()
+        {
+            foreach (var product in products)
+            {
+                Console.WriteLine("Produkt: " + product.Name + " | ProduktID: " + product.ProductID + " | Pris: " + product.Price + " | " + product.PriceType, "\n");
+            }
         }
          
         
