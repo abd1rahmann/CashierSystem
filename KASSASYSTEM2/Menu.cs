@@ -123,7 +123,7 @@ namespace KASSASYSTEM2
 
                     else
                     {
-                        Console.WriteLine("Fel informat! Följ instruktionerna som ges.");
+                        Console.WriteLine("Fel inmatning! Följ instruktionerna som ges.");
                     }
 
                 }
@@ -156,7 +156,7 @@ namespace KASSASYSTEM2
             var fileName = "kvitto" + resultString + ".txt";
             string path = @"C:\Users\Admin\source\repos\KASSASYSTEM2\KASSASYSTEM2\" + fileName;
 
-            string kvitto = "KVITTO " + date.ToString("yyyy-MM-dd hh:mm:ss") + "\n";
+            string kvitto = "\nKVITTO " + date.ToString("yyyy-MM-dd hh:mm:ss") + "\n";
             decimal total = 0;
             foreach (var cartt in cartts) 
             {
