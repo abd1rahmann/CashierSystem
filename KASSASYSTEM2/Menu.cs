@@ -147,10 +147,8 @@ namespace KASSASYSTEM2
             string dateString = date.ToString("yyyy-MM-dd-");
             string timeString = date.ToString("HHmmss");
 
-            // Concatenate the date and time strings
             string resultString = dateString + timeString;
 
-            // Remove ":" from the time part
             resultString = resultString.Replace(":", "");
 
             var fileName = "kvitto" + resultString + ".txt";
