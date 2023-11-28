@@ -10,7 +10,7 @@ namespace KASSASYSTEM2
 {
     public class Menu
     {
-        string filePath = "C:\\Users\\Admin\\source\\repos\\KASSASYSTEM2\\KASSASYSTEM2\\Produkter.txt";
+        string filePath = "../../../Produkter.txt";
         private readonly List<Product> products = new List<Product>();
         public void MainMenu()
         {
@@ -154,6 +154,7 @@ namespace KASSASYSTEM2
             var fileName = "kvitto" + resultString + ".txt";
             string path = @"C:\Users\Admin\source\repos\KASSASYSTEM2\KASSASYSTEM2\" + fileName;
 
+
             string kvitto = "\nKVITTO " + date.ToString("yyyy-MM-dd hh:mm:ss") + "\n";
             decimal total = 0;
             foreach (var cartt in cartts) 
@@ -169,7 +170,7 @@ namespace KASSASYSTEM2
             }
             
             kvitto+= $"Total: {total}";
-            File.WriteAllText(path, kvitto);
+            File.WriteAllText(path,kvitto);
             Console.WriteLine(kvitto);
             
         }
