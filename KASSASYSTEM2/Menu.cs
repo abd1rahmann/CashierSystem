@@ -152,7 +152,7 @@ namespace KASSASYSTEM2
             resultString = resultString.Replace(":", "");
 
             var fileName = "kvitto" + resultString + ".txt";
-            string path = @"C:\Users\Admin\source\repos\KASSASYSTEM2\KASSASYSTEM2\" + fileName;
+            string path = "../../../KASSASYSTEM2" + fileName;
 
 
             string kvitto = "\nKVITTO " + date.ToString("yyyy-MM-dd hh:mm:ss") + "\n";
