@@ -83,7 +83,19 @@ namespace KASSASYSTEM2
                 Console.WriteLine("Kommando: ");
                 string kommando = Console.ReadLine();
 
-               
+                if (kommando == "4")
+                {
+                    Console.Write("Ange produktens ID för borttagning: ");
+                    if (int.TryParse(Console.ReadLine(), out int productIdToRemove))
+                    {
+                        RemoveProduct(productIdToRemove);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Felaktig inmatning. Ange ett giltigt heltal som produktens ID.");
+                    }
+                }
+
 
                 if (kommando.ToLower() == "pay")
                 {
@@ -111,8 +123,9 @@ namespace KASSASYSTEM2
                             };
 
                             cart.AddProduct(cartt);
-
                         }
+                       
+
 
                         else
                         {
@@ -126,6 +139,7 @@ namespace KASSASYSTEM2
                         Console.WriteLine("Fel inmatning! Följ instruktionerna som ges.");
                     }
 
+                    
                 }
                 
 
@@ -145,9 +159,9 @@ namespace KASSASYSTEM2
             var date = DateTime.Now;
 
             string dateString = date.ToString("yyyy-MM-dd-");
-            string timeString = date.ToString("HHmmss");
+            
 
-            string resultString = dateString + timeString;
+            string resultString = dateString;
 
             resultString = resultString.Replace(":", "");
 
@@ -155,7 +169,7 @@ namespace KASSASYSTEM2
             string path = "../../../" + fileName;
 
 
-            string kvitto = "\nKVITTO " + date.ToString("yyyy-MM-dd hh:mm:ss") + "\n";
+            string kvitto = "\nKVITTO " + date.ToString("yyyy-MM-dd") + "\n";
             decimal total = 0;
             foreach (var cartt in cartts) 
             {
@@ -169,8 +183,8 @@ namespace KASSASYSTEM2
                 }
             }
             
-            kvitto+= $"Total: {total}";
-            File.WriteAllText(path,kvitto);
+            kvitto+= $"Total: {total}\n\n";
+            File.AppendAllText(path,kvitto);
             Console.WriteLine(kvitto);
             
         }
@@ -182,8 +196,23 @@ namespace KASSASYSTEM2
                 Console.WriteLine("Produkt: " + product.Name + " | ProduktID: " + product.ProductID + " | Pris: " + product.Price + " | " + product.PriceType, "\n");
             }
         }
-         
-        
+
+        public void RemoveProduct(int productId)
+        {
+            var productToRemove = products.FirstOrDefault(x => x.ProductID == productId);
+
+            if (productToRemove != null)
+            {
+                products.Remove(productToRemove);
+                Console.WriteLine($"Produkt med ID {productId} har tagits bort.");
+            }
+            else
+            {
+                Console.WriteLine($"Produkt med ID {productId} kunde inte hittas.");
+            }
+        }
+
+
     }
 
 }
