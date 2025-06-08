@@ -1,4 +1,4 @@
-# KASSASYSTEM2
+# Cashier System
 
 A Windows Forms-based Point of Sale (POS) system developed in C#. This application is designed for small businesses to manage sales, calculate totals, and keep track of product inventory.
 
